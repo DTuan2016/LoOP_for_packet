@@ -1,0 +1,3 @@
+/home/security/loop_algorithm/build/CMakeFiles/loop_algorithm.dir
+/home/security/loop_algorithm/build/CMakeFiles/edit_cache.dir
+/home/security/loop_algorithm/build/CMakeFiles/rebuild_cache.dir
