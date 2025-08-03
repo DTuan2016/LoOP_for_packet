@@ -36,19 +36,13 @@ point_nd make_point(const char* src_ip, const char* dst_ip,
     return p;
 }
 
-float euclidean_distance(const point_nd* p1, const point_nd* p2) {
+float standard_distance(const point_nd* p1, const point_nd* p2) {
     float sum = 0.0f;
-    // sum = (p1->src_ip - p2->)
     float src_binh           = (p1->src_ip - p2->src_ip)*(p1->src_ip - p2->src_ip);
     float dst_binh           = (p1->dst_ip - p2->dst_ip)*(p1->dst_ip - p2->dst_ip);
     float packet_zize_binh   = (p1->packet_size - p2->packet_size)*(p1->packet_size - p2->packet_size);
     float protocol_binh      = (p1->protocol - p2->protocol)*(p1->protocol - p2->protocol);
     float flow_duration_binh = (p1->flow_duration - p2->flow_duration)*(p1->flow_duration - p2->flow_duration);
-    
-    // for (int i = 0; i < DIM; i++) {
-    //     float diff = p1->features[i] - p2->features[i];
-    //     sum += diff * diff;
-    // }
     sum = src_binh + dst_binh + packet_zize_binh + protocol_binh + flow_duration_binh;
     return sqrt(sum);
 }

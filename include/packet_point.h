@@ -7,11 +7,7 @@
 #define MAX_IP_VALUE        4294967295.0f
 #define MAX_PROTOCOL        255.0f
 
-// Số chiều vector đặc trưng
-#define DIM 5
-
 typedef struct point_nd {
-    // float features[DIM];
     float       src_ip, dst_ip;
     uint16_t    packet_size;
     uint8_t     protocol;
