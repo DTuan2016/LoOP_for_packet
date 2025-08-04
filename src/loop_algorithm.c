@@ -1,18 +1,16 @@
 #include <stdlib.h>
 #include <math.h>
 #include "loop_algorithm.h"
-#include "packet_point.h"
+#include "data_point.h"
 
 #define DEFAULT_LAMBDA  3.0f  // hệ số lambda dùng trong LoOP
 #define SQRT2           1.41421356f
 
-float standard_distance(const point_nd* a, const point_nd* b); // từ packet_point.h
-
-void find_k_nearest_neighbors(const point_nd* data, int num_points, int k, int knn_indices[][k]) {
+void find_k_nearest_neighbors_dp(const data_point* data, int num_points, int k, int knn_indices[][k]) {
     for (int i = 0; i < num_points; i++) {
         float dist[num_points];
         for (int j = 0; j < num_points; j++) {
-            dist[j] = (i == j) ? 1e9 : standard_distance(&data[i], &data[j]);
+            dist[j] = (i == j) ? 1e9 : standard_distance_data(&data[i], &data[j]);
         }
 
         // Simple selection sort
@@ -31,12 +29,12 @@ void find_k_nearest_neighbors(const point_nd* data, int num_points, int k, int k
     }
 }
 
-void probabilistic_set_distance(const point_nd* data, int num_points, int k, int knn_indices[][k], float* pdist) {
+void probabilistic_set_distance_dp(const data_point* data, int num_points, int k, int knn_indices[][k], float* pdist) {
     for (int i = 0; i < num_points; i++) {
         float sum = 0.0f;
         for (int j = 0; j < k; j++) {
             int neighbor_idx = knn_indices[i][j];
-            float d = standard_distance(&data[i], &data[neighbor_idx]);
+            float d = standard_distance_data(&data[i], &data[neighbor_idx]);
             sum += d * d;
         }
         pdist[i] = sqrtf(sum / k);
@@ -76,13 +74,13 @@ void compute_loop_scores(const float* plof, int num_points, float nplof, float* 
     }
 }
 
-void run_loop(const point_nd* data, int num_points, int k, float* loop_out) {
+void run_loop_dp(const data_point* data, int num_points, int k, float* loop_out) {
     int knn_indices[num_points][k];
     float pdist[num_points];
     float plof[num_points];
 
-    find_k_nearest_neighbors(data, num_points, k, knn_indices);
-    probabilistic_set_distance(data, num_points, k, knn_indices, pdist);
+    find_k_nearest_neighbors_dp(data, num_points, k, knn_indices);
+    probabilistic_set_distance_dp(data, num_points, k, knn_indices, pdist);
     compute_plof(pdist, num_points, k, knn_indices, plof);
     float nplof = compute_nplof(plof, num_points, DEFAULT_LAMBDA);
     compute_loop_scores(plof, num_points, nplof, loop_out);

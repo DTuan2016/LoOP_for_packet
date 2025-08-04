@@ -8,7 +8,7 @@ include_directories(include)
 add_executable(loop_algorithm
     main.c
     src/loop_algorithm.c
-    src/packet_point.c
+    src/data_point.c
 )
 
 target_link_libraries(loop_algorithm m) 
