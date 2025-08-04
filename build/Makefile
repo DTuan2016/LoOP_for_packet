@@ -153,6 +153,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/loop_algorithm.dir/build.make CMakeFiles/loop_algorithm.dir/main.c.s
 .PHONY : main.c.s
 
+src/data_point.o: src/data_point.c.o
+.PHONY : src/data_point.o
+
+# target to build an object file
+src/data_point.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/loop_algorithm.dir/build.make CMakeFiles/loop_algorithm.dir/src/data_point.c.o
+.PHONY : src/data_point.c.o
+
+src/data_point.i: src/data_point.c.i
+.PHONY : src/data_point.i
+
+# target to preprocess a source file
+src/data_point.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/loop_algorithm.dir/build.make CMakeFiles/loop_algorithm.dir/src/data_point.c.i
+.PHONY : src/data_point.c.i
+
+src/data_point.s: src/data_point.c.s
+.PHONY : src/data_point.s
+
+# target to generate assembly for a file
+src/data_point.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/loop_algorithm.dir/build.make CMakeFiles/loop_algorithm.dir/src/data_point.c.s
+.PHONY : src/data_point.c.s
+
 src/loop_algorithm.o: src/loop_algorithm.c.o
 .PHONY : src/loop_algorithm.o
 
@@ -177,30 +201,6 @@ src/loop_algorithm.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/loop_algorithm.dir/build.make CMakeFiles/loop_algorithm.dir/src/loop_algorithm.c.s
 .PHONY : src/loop_algorithm.c.s
 
-src/packet_point.o: src/packet_point.c.o
-.PHONY : src/packet_point.o
-
-# target to build an object file
-src/packet_point.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/loop_algorithm.dir/build.make CMakeFiles/loop_algorithm.dir/src/packet_point.c.o
-.PHONY : src/packet_point.c.o
-
-src/packet_point.i: src/packet_point.c.i
-.PHONY : src/packet_point.i
-
-# target to preprocess a source file
-src/packet_point.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/loop_algorithm.dir/build.make CMakeFiles/loop_algorithm.dir/src/packet_point.c.i
-.PHONY : src/packet_point.c.i
-
-src/packet_point.s: src/packet_point.c.s
-.PHONY : src/packet_point.s
-
-# target to generate assembly for a file
-src/packet_point.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/loop_algorithm.dir/build.make CMakeFiles/loop_algorithm.dir/src/packet_point.c.s
-.PHONY : src/packet_point.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -213,12 +213,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/data_point.o"
+	@echo "... src/data_point.i"
+	@echo "... src/data_point.s"
 	@echo "... src/loop_algorithm.o"
 	@echo "... src/loop_algorithm.i"
 	@echo "... src/loop_algorithm.s"
-	@echo "... src/packet_point.o"
-	@echo "... src/packet_point.i"
-	@echo "... src/packet_point.s"
 .PHONY : help
 
 

@@ -1,7 +1,7 @@
-CMakeFiles/loop_algorithm.dir/src/packet_point.c.o: \
- /home/security/loop_algorithm/src/packet_point.c \
+CMakeFiles/loop_algorithm.dir/src/data_point.c.o: \
+ /home/security/loop_algorithm/src/data_point.c \
  /usr/include/stdc-predef.h \
- /home/security/loop_algorithm/include/packet_point.h \
+ /home/security/loop_algorithm/include/data_point.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

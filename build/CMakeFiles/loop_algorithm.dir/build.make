@@ -97,32 +97,32 @@ CMakeFiles/loop_algorithm.dir/src/loop_algorithm.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/loop_algorithm.dir/src/loop_algorithm.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/security/loop_algorithm/src/loop_algorithm.c -o CMakeFiles/loop_algorithm.dir/src/loop_algorithm.c.s
 
-CMakeFiles/loop_algorithm.dir/src/packet_point.c.o: CMakeFiles/loop_algorithm.dir/flags.make
-CMakeFiles/loop_algorithm.dir/src/packet_point.c.o: ../src/packet_point.c
-CMakeFiles/loop_algorithm.dir/src/packet_point.c.o: CMakeFiles/loop_algorithm.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/security/loop_algorithm/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/loop_algorithm.dir/src/packet_point.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/loop_algorithm.dir/src/packet_point.c.o -MF CMakeFiles/loop_algorithm.dir/src/packet_point.c.o.d -o CMakeFiles/loop_algorithm.dir/src/packet_point.c.o -c /home/security/loop_algorithm/src/packet_point.c
+CMakeFiles/loop_algorithm.dir/src/data_point.c.o: CMakeFiles/loop_algorithm.dir/flags.make
+CMakeFiles/loop_algorithm.dir/src/data_point.c.o: ../src/data_point.c
+CMakeFiles/loop_algorithm.dir/src/data_point.c.o: CMakeFiles/loop_algorithm.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/security/loop_algorithm/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/loop_algorithm.dir/src/data_point.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/loop_algorithm.dir/src/data_point.c.o -MF CMakeFiles/loop_algorithm.dir/src/data_point.c.o.d -o CMakeFiles/loop_algorithm.dir/src/data_point.c.o -c /home/security/loop_algorithm/src/data_point.c
 
-CMakeFiles/loop_algorithm.dir/src/packet_point.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/loop_algorithm.dir/src/packet_point.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/security/loop_algorithm/src/packet_point.c > CMakeFiles/loop_algorithm.dir/src/packet_point.c.i
+CMakeFiles/loop_algorithm.dir/src/data_point.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/loop_algorithm.dir/src/data_point.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/security/loop_algorithm/src/data_point.c > CMakeFiles/loop_algorithm.dir/src/data_point.c.i
 
-CMakeFiles/loop_algorithm.dir/src/packet_point.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/loop_algorithm.dir/src/packet_point.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/security/loop_algorithm/src/packet_point.c -o CMakeFiles/loop_algorithm.dir/src/packet_point.c.s
+CMakeFiles/loop_algorithm.dir/src/data_point.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/loop_algorithm.dir/src/data_point.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/security/loop_algorithm/src/data_point.c -o CMakeFiles/loop_algorithm.dir/src/data_point.c.s
 
 # Object files for target loop_algorithm
 loop_algorithm_OBJECTS = \
 "CMakeFiles/loop_algorithm.dir/main.c.o" \
 "CMakeFiles/loop_algorithm.dir/src/loop_algorithm.c.o" \
-"CMakeFiles/loop_algorithm.dir/src/packet_point.c.o"
+"CMakeFiles/loop_algorithm.dir/src/data_point.c.o"
 
 # External object files for target loop_algorithm
 loop_algorithm_EXTERNAL_OBJECTS =
 
 loop_algorithm: CMakeFiles/loop_algorithm.dir/main.c.o
 loop_algorithm: CMakeFiles/loop_algorithm.dir/src/loop_algorithm.c.o
-loop_algorithm: CMakeFiles/loop_algorithm.dir/src/packet_point.c.o
+loop_algorithm: CMakeFiles/loop_algorithm.dir/src/data_point.c.o
 loop_algorithm: CMakeFiles/loop_algorithm.dir/build.make
 loop_algorithm: CMakeFiles/loop_algorithm.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/security/loop_algorithm/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable loop_algorithm"
