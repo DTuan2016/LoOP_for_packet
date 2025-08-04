@@ -1,10 +1,12 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "loop_algorithm.h"
 #include "data_point.h"
 
-#define DEFAULT_LAMBDA  3.0f  // hệ số lambda dùng trong LoOP
+#define DEFAULT_LAMBDA  3.0f
 #define SQRT2           1.41421356f
+#define DEBUG           1 // <== bật hoặc tắt log ở đây
 
 void find_k_nearest_neighbors_dp(const data_point* data, int num_points, int k, int knn_indices[][k]) {
     for (int i = 0; i < num_points; i++) {
@@ -13,7 +15,7 @@ void find_k_nearest_neighbors_dp(const data_point* data, int num_points, int k, 
             dist[j] = (i == j) ? 1e9 : standard_distance_data(&data[i], &data[j]);
         }
 
-        // Simple selection sort
+        printf("Point %d:\n", i);
         for (int m = 0; m < k; m++) {
             int min_idx = -1;
             float min_val = 1e9;
@@ -24,8 +26,10 @@ void find_k_nearest_neighbors_dp(const data_point* data, int num_points, int k, 
                 }
             }
             knn_indices[i][m] = min_idx;
+            printf("  Neighbor %d: index=%d, distance=%.4f\n", m, min_idx, min_val);
             dist[min_idx] = 1e9;
         }
+        printf("\n");
     }
 }
 
@@ -39,6 +43,13 @@ void probabilistic_set_distance_dp(const data_point* data, int num_points, int k
         }
         pdist[i] = sqrtf(sum / k);
     }
+
+#if DEBUG
+    printf("\nProbabilistic distances (pdist):\n");
+    for (int i = 0; i < num_points; i++) {
+        printf("pdist[%d] = %.4f\n", i, pdist[i]);
+    }
+#endif
 }
 
 void compute_plof(const float* pdist, int num_points, int k, int knn_indices[][k], float* plof) {
@@ -55,6 +66,13 @@ void compute_plof(const float* pdist, int num_points, int k, int knn_indices[][k
         else
             plof[i] = 0.0f;
     }
+
+#if DEBUG
+    printf("\nPLOF values:\n");
+    for (int i = 0; i < num_points; i++) {
+        printf("plof[%d] = %.4f\n", i, plof[i]);
+    }
+#endif
 }
 
 float compute_nplof(const float* plof, int num_points, float lambda) {
@@ -63,15 +81,28 @@ float compute_nplof(const float* plof, int num_points, float lambda) {
         sum_sq += plof[i] * plof[i];
     }
     float mean_sq = sum_sq / num_points;
-    return lambda * sqrtf(mean_sq);
+    float nplof = lambda * sqrtf(mean_sq);
+
+#if DEBUG
+    printf("\nnPLOF (normalized PLOF): %.4f\n", nplof);
+#endif
+
+    return nplof;
 }
 
 void compute_loop_scores(const float* plof, int num_points, float nplof, float* loop_out) {
     for (int i = 0; i < num_points; i++) {
         float val = plof[i] / (nplof * SQRT2);
         float score = erf(val);
-        loop_out[i] = (score > 0.0f) ? score : 0.0f;
+        loop_out[i] = fmaxf(0.0f, fminf(1.0f, score));
     }
+
+#if DEBUG
+    printf("\nLoOP scores:\n");
+    for (int i = 0; i < num_points; i++) {
+        printf("LoOP[%d] = %.4f\n", i, loop_out[i]);
+    }
+#endif
 }
 
 void run_loop_dp(const data_point* data, int num_points, int k, float* loop_out) {
@@ -79,9 +110,17 @@ void run_loop_dp(const data_point* data, int num_points, int k, float* loop_out)
     float pdist[num_points];
     float plof[num_points];
 
+#if DEBUG
+    printf("\n--- RUNNING LoOP on %d data points, k = %d ---\n", num_points, k);
+#endif
+
     find_k_nearest_neighbors_dp(data, num_points, k, knn_indices);
     probabilistic_set_distance_dp(data, num_points, k, knn_indices, pdist);
     compute_plof(pdist, num_points, k, knn_indices, plof);
     float nplof = compute_nplof(plof, num_points, DEFAULT_LAMBDA);
     compute_loop_scores(plof, num_points, nplof, loop_out);
+
+#if DEBUG
+    printf("\n--- END LoOP ---\n\n");
+#endif
 }

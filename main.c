@@ -3,24 +3,45 @@
 #include "loop_algorithm.h"
 
 int main() {
-    // Tạo 5 gói tin mẫu (4 bình thường + 1 bất thường)
-    // point_nd packets[5];
-    // packets[0] = make_point("192.168.0.1", "10.0.0.2", 1000, 6, 0.1f);
-    // packets[1] = make_point("192.168.0.2", "10.0.0.3", 1050, 6, 0.15f);
-    // packets[2] = make_point("192.168.0.3", "10.0.0.4", 1100, 6, 0.12f);
-    // packets[3] = make_point("192.168.0.4", "10.0.0.5", 1150, 6, 0.2f);
-    // packets[4] = make_point("8.8.8.8",     "1.1.1.1",   500, 17, 0.9f); // Gói bất thường
+    data_point points[30] = {
+        make_data_point(120, 5),
+        make_data_point(135, 4),
+        make_data_point(110, 6),
+        make_data_point(140, 5),
+        make_data_point(125, 4),
+        make_data_point(130, 5),
+        make_data_point(118, 6),
+        make_data_point(119, 5),
+        make_data_point(122, 5),
+        make_data_point(128, 4),
 
-    data_point points[5];
-    points[0] = make_data_point(120, 5);
-    points[1] = make_data_point(135, 4);
-    points[2] = make_data_point(800, 7);
-    points[3] = make_data_point(95000, 150);
-    points[4] = make_data_point(300, 100);
+        make_data_point(130, 5),
+        make_data_point(121, 6),
+        make_data_point(124, 5),
+        make_data_point(137, 5),
+        make_data_point(115, 5),
+        make_data_point(126, 4),
+        make_data_point(123, 5),
+        make_data_point(129, 4),
+        make_data_point(134, 5),
+        make_data_point(117, 6),
 
-    int num_points = 5;
-    int k = 4; // Số lân cận gần nhất
-    float loop_scores[5];
+        make_data_point(132, 5),
+        make_data_point(138, 4),
+        make_data_point(116, 6),
+        make_data_point(127, 5),
+        make_data_point(133, 4),
+        make_data_point(136, 5),
+        make_data_point(131, 4),
+        make_data_point(139, 5),
+        make_data_point(119, 6),
+
+        // Dữ liệu bất thường (anomaly)
+        make_data_point(5000, 200)
+    };
+    int num_points = 30;
+    int k = 3; // Số lân cận gần nhất
+    float loop_scores[30];
 
     // Gọi hàm run đã viết trong loop_algorithm.c
     run_loop_dp(points, num_points, k, loop_scores);
